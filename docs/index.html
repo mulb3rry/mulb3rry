@@ -24,6 +24,26 @@
     <main>
       <article class="card">
         <div class="portrait">
+          <svg class="orbit" viewBox="0 0 240 240" aria-hidden="true">
+            <defs>
+              <radialGradient id="orbit-color" gradientUnits="userSpaceOnUse" cx="185" cy="55" r="150">
+                <stop offset="0" stop-color="#799837" stop-opacity="0.9"></stop>
+                <stop offset="0.32" stop-color="#8fa645" stop-opacity="0.72"></stop>
+                <stop offset="0.72" stop-color="#d56ddd" stop-opacity="0.45"></stop>
+              </radialGradient>
+            </defs>
+            <circle
+              cx="120"
+              cy="120"
+              r="119"
+              pathLength="750"
+              fill="none"
+              stroke="url(#orbit-color)"
+              stroke-width="1"
+              stroke-linecap="butt"
+              stroke-dasharray="3 3"
+            ></circle>
+          </svg>
           <img
             class="logo"
             src="assets/images/mulb3rry_big.png"
@@ -46,7 +66,7 @@
 
           <nav class="links" aria-label="Find mulb3rry online">
             <a href="https://github.com/mulb3rry" rel="me">github ↗</a>
-            <a href="https://manuel-koenig.de/Impressum.html" rel="external">impressum ↗</a>
+            <a href="https://manuel-koenig.de/impressum.html" rel="external">impressum ↗</a>
           </nav>
         </div>
       </article>

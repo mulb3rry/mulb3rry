@@ -58,35 +58,50 @@ main {
   place-items: center;
   overflow: hidden;
   border-radius: 2.4rem 0 0 0.7rem;
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px),
-    #2a102e;
-  background-size: 1.25rem 1.25rem;
+  background: #2a102e;
 }
 
 .portrait::before,
 .portrait::after {
   position: absolute;
-  border-radius: 50%;
   content: "";
 }
 
 .portrait::before {
+  inset: -1.25rem;
+  background:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 1.25rem 1.25rem;
+  pointer-events: none;
+  animation: grid-drift 4s linear infinite;
+  backface-visibility: hidden;
+  will-change: transform;
+}
+
+.orbit {
+  position: absolute;
+  z-index: 1;
   width: 15rem;
   height: 15rem;
-  border: 1px dashed rgba(213, 109, 221, 0.45);
+  overflow: visible;
+  pointer-events: none;
+}
+
+.orbit circle {
+  animation: orbit-dashes 48s linear infinite;
 }
 
 .portrait::after {
   width: 12rem;
   height: 12rem;
+  border-radius: 50%;
   background: rgba(139, 42, 145, 0.17);
 }
 
 .logo {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   display: block;
   width: 13.5rem;
   height: 13.5rem;
@@ -166,6 +181,29 @@ a:focus-visible {
   outline-offset: 3px;
 }
 
+@keyframes orbit-dashes {
+  to {
+    stroke-dashoffset: -750;
+  }
+}
+
+@keyframes grid-drift {
+  from {
+    transform: translate3d(1.25rem, 1.25rem, 0);
+  }
+
+  to {
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .portrait::before,
+  .orbit circle {
+    animation: none;
+  }
+}
+
 @media (max-width: 720px) {
   .card {
     width: min(100%, 28rem);
@@ -179,7 +217,7 @@ a:focus-visible {
     border-radius: 1.9rem 0.5rem 0 0;
   }
 
-  .portrait::before {
+  .orbit {
     width: 12rem;
     height: 12rem;
   }
